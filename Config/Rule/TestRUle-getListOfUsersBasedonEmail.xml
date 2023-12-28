@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="TestRUle-getListOfUsersBasedonEmail">
+  <Source>
+
+ import java.util.ArrayList;
+import java.util.List;
+
+import sailpoint.api.SailPointContext;
+import sailpoint.object.Filter;
+import sailpoint.object.Identity;
+import sailpoint.object.QueryOptions;
+import sailpoint.tools.GeneralException;
+
+QueryOptions qo=new QueryOptions();
+		Filter filter = Filter.eq("email", "na21@gmail.com");
+				
+		qo.addFilter(filter);
+		
+		List&lt;Identity> listIdentitties = context.getObjects(Identity.class, qo);
+		
+		if(listIdentitties != null)
+		{
+			for(Identity identity:listIdentitties)
+			{
+				System.out.println(identity.getName());
+				
+				return identity;
+			}
+		}
+
+
+
+  </Source>
+</Rule>
